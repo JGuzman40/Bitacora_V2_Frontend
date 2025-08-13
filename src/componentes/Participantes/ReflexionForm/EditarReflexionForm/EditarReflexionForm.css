@@ -1,0 +1,79 @@
+.editar-container {
+  max-width: 600px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.editar-header {
+  text-align: center;
+  margin-bottom: 0.5rem; /* Reducido */
+}
+
+.editar-header h2 {
+  margin: 0.5rem 0; /* Menos espacio */
+  color: var(--color-ligth);
+}
+
+.editar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* Reducido el gap */
+}
+
+.editar-form label {
+  font-weight: 600;
+  color: #555;
+}
+
+.editar-form textarea {
+  resize: vertical;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-height: 80px;
+}
+
+.audio-preview {
+  margin-top: 1rem;
+}
+
+.audio-preview audio {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.editar-form button {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-button);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.editar-form button:hover {
+  background-color: #2563eb;
+}
+
+.volver-btn {
+  margin-top: 1rem;
+  background-color: #e5e7eb;
+  color: #333;
+}
+
+.volver-btn:hover {
+  background-color: #d1d5db;
+}
+
+.editar-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #777;
+}

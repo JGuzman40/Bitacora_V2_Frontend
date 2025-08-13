@@ -1,0 +1,176 @@
+/* global.css */
+
+/* 🎨 Variables de diseño */
+:root {
+  --color-background: #3e2723; /* marrón oscuro */
+  --color-primary: #6d4c41;    /* marrón medio */
+  --color-light: #f3e5ab;      /* crema clara, cálido */
+  --color-button: #8e5351;     /* vino suave */
+  --color-button-hover: #5d2e2e; /* vino intenso */
+  --color-focus: #a1887f;      /* marrón claro para outline */
+  --font-base: 'Verdana', 'Segoe UI', 'Helvetica', sans-serif;
+}
+
+/* 🔄 Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🌍 HTML + Body */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-base);
+  background: linear-gradient(160deg, #4b1c1c, #2e0f0f); /* Usa el mismo fondo que .landing */
+  color: var(--color-light);
+}
+
+/* 💡 Soporte dark mode si el usuario lo fuerza */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+/* 📦 Contenedor raíz */
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* 🧱 Contenedor general */
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 1.5rem;
+  margin: 0 auto;
+}
+
+/* 🧭 Tipografía */
+h1 {
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+h2, h3 {
+  color: var(--color-surface);
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+h4, h5, h6 {
+  color: var(--color-text);
+  font-size: 10px;
+  font-weight: lighter;
+  line-height: 1.3;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* 🔗 Enlaces */
+a,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+
+/* Asegura que botones dentro de <Link> no tengan subrayado */
+a button,
+a:hover button {
+  text-decoration: none;
+}
+
+/* 🔘 Botones */
+button {
+  background-color: var(--color-accent);
+  color: var(--color-accent-dark);
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.2rem;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  margin: 1rem auto;
+  display: block;
+}
+
+button:hover {
+  background-color: var(--color-accent-dark);
+  color: var(--color-text);
+}
+
+/* 🎯 Accesibilidad: focus y transitions */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 🧾 Inputs y Textareas */
+input, textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 📱 Responsive */
+@media (max-width: 411px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 412px) {
+  :root {
+    font-size: 17px;
+  }
+  .container {
+    max-width: 412px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* ↕️ Espaciado entre secciones */
+section + section {
+  margin-top: 2rem;
+}

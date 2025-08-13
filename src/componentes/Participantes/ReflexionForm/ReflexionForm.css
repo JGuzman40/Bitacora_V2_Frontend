@@ -1,0 +1,99 @@
+.reflexion-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, #4b1c1c, #2e0f0f);
+  color: var(--color-light);
+  border-radius: 25px;
+}
+
+.reflexion-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.reflexion-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.reflexion-form {
+  background-color: transparent;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+}
+
+.reflexion-form label {
+  margin-bottom: 10px;
+  font-weight:lighter;
+  font-size: small;
+  text-align: center;
+  color: var(--color-light);
+}
+
+.reflexion-form textarea {
+  background-color: rgba(255, 255, 255, 0.05);
+  margin-bottom: 10px;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid;
+  border-color: var(--color-primary);
+  font-size: 14px;
+  color: var(--color-primary);
+  resize: vertical;
+}
+
+.audio-controls button {
+  margin-top: 0.5rem;
+}
+
+.audio-preview {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.reflexion-form button {
+  background-color: #d3a87c;
+  color: #3b081c;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.reflexion-form button:hover {
+  background-color: #a65c38;
+  color: #fff;
+}
+
+.volver-btn {
+  max-width: 200px;
+  margin: 2rem auto 0;
+  background-color: #ccc;
+  color: #333;
+}
+
+.reflexion-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #ddd;
+  padding: 1rem 0;
+}
+

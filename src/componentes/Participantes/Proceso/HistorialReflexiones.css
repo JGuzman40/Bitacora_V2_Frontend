@@ -1,0 +1,136 @@
+.historial-container {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(160deg, #4b1c1c, #2e0f0f);
+  font-weight: lighter;
+  font-size: small;
+  color: var(--color-light);
+  border-radius: 25px;
+}
+
+.historial-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.historial-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.reflexiones-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.reflexion-card {
+  background-color: transparent;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+}
+
+.reflexion-card p {
+  font-size: 14px;
+  color: var(--color-light);
+}
+
+.reflexion-card audio {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.checkbox-container {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #d3a87c;
+}
+
+.volver-btn {
+  max-width: 200px;
+  margin: 2rem auto 0;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reflexion-card {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reflexion-card:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.compartir-btn {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #d3a87c;
+  color: #3b081c;
+  transition: background-color 0.3s ease;
+}
+
+.compartir-btn.activo {
+  background-color: #3b081c;
+  color: #fff;
+}
+
+.volver-btn:hover {
+  background-color: #a65c38;
+  color: #fff;
+}
+
+.historial-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #ddd;
+  padding: 1rem 0;
+}
+.reflexion-texto {
+  text-align: justify;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.truncado {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expandido {
+  display: block;
+}
