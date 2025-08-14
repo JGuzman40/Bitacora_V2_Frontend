@@ -1,0 +1,117 @@
+/* src/pages/LineaBase/LineaBase.css */
+
+.linea-base-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color:#555555;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+}
+
+.linea-base-container h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333333;
+}
+
+.paso-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.paso-container label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #555555;
+}
+
+.paso-container input[type="text"],
+.paso-container textarea,
+.paso-container select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.paso-container input[type="text"]:focus,
+.paso-container textarea:focus,
+.paso-container select:focus {
+  border-color: #4f46e5; /* color de enfoque */
+  outline: none;
+}
+
+.paso-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.paso-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.paso-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.paso-buttons .btn-anterior {
+  background-color: #e5e7eb;
+  color: #333;
+}
+
+.paso-buttons .btn-anterior:hover {
+  background-color: #d1d5db;
+}
+
+.paso-buttons .btn-siguiente,
+.paso-buttons .btn-guardar {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.paso-buttons .btn-siguiente:hover,
+.paso-buttons .btn-guardar:hover {
+  background-color: #4338ca;
+}
+
+/* Mensajes de alerta */
+.alert-message {
+  color: #b91c1c;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* Lista de elementos y estados */
+.lista-elementos,
+.lista-estados {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.elemento-item,
+.estado-item {
+  background-color: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Selector de estados (1 a 5) */
+.estado-item select {
+  width: 80px;
+  margin-left: 10px;
+}

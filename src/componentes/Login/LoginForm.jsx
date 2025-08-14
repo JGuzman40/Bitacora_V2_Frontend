@@ -12,39 +12,54 @@ function LoginForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setError("");
+  setLoading(true);
 
-    if (!email || !password) {
-      setError("Todos los campos son obligatorios");
-      setLoading(false);
-      return;
-    }
+  if (!email || !password) {
+    setError("Todos los campos son obligatorios");
+    setLoading(false);
+    return;
+  }
 
-    try {
-      const response = await axios.post(`${API_URL}/auth/login`, {
-        email,
-        password,
-      });
+  try {
+    // Login
+    const response = await axios.post(`${API_URL}/auth/login`, { email, password });
+    const { token, user } = response.data;
 
-      const { token, user } = response.data;
+    // Guardar token y usuario en localStorage
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+    if (user.role === "admin") {
+      window.location.href = "/dashboard-administrador";
+    } else {
+      // Revisar si el usuario ya tiene línea base
+      try {
+        const responseLineaBase = await axios.get(`${API_URL}/lineabase/usuario/${user.id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-      if (user.role === "admin") {
-        window.location.href = "/dashboard-administrador";
-      } else {
+        if (responseLineaBase.data?.lineaBase) {
+          // Ya tiene línea base -> dashboard participante
+          window.location.href = "/dashboard-participante";
+        } else {
+          // Primera vez -> llevar a crear línea base
+          window.location.href = "/linea-base";
+        }
+      } catch (err) {
+        console.log("Error al revisar línea base:", err);
+        // Por seguridad, enviar al dashboard
         window.location.href = "/dashboard-participante";
       }
-    } catch (err) {
-      setError(err.response?.data?.message || "Ocurrió un error al iniciar sesión");
-    } finally {
-      setLoading(false);
     }
-  };
+  } catch (err) {
+    setError(err.response?.data?.message || "Ocurrió un error al iniciar sesión");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="login-container">

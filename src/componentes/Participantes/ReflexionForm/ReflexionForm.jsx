@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./ReflexionForm.css";
 
-const API_URL= import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 function ReflexionForm() {
   const [texto, setTexto] = useState("");
@@ -12,34 +12,65 @@ function ReflexionForm() {
   const [audioBlob, setAudioBlob] = useState(null);
   const mediaRecorderRef = useRef(null);
   const audioChunks = useRef([]);
+  const recognitionRef = useRef(null);
   const navigate = useNavigate();
 
   const handleStartRecording = async () => {
     setGrabando(true);
     audioChunks.current = [];
 
+    // --- AUDIO ---
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const mediaRecorder = new MediaRecorder(stream);
     mediaRecorderRef.current = mediaRecorder;
 
     mediaRecorder.ondataavailable = (event) => {
-      if (event.data.size > 0) {
-        audioChunks.current.push(event.data);
-      }
+      if (event.data.size > 0) audioChunks.current.push(event.data);
     };
 
     mediaRecorder.onstop = () => {
-      const audioBlob = new Blob(audioChunks.current, { type: "audio/ogg" });
-      setAudioBlob(audioBlob);
-      setAudioURL(URL.createObjectURL(audioBlob));
+      const blob = new Blob(audioChunks.current, { type: "audio/ogg" });
+      setAudioBlob(blob);
+      setAudioURL(URL.createObjectURL(blob));
     };
 
     mediaRecorder.start();
+
+    // --- TRANSCRIPCIÓN EN TIEMPO REAL ---
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Tu navegador no soporta transcripción en tiempo real.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognitionRef.current = recognition;
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = "es-PE"; // Cambia según tu público
+
+    recognition.onresult = (event) => {
+      let interim = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          setTexto((prev) => prev + transcript + " ");
+        } else {
+          interim += transcript;
+        }
+      }
+      // Opcional: mostrar texto intermedio
+      // setTexto(texto + interim);
+    };
+
+    recognition.start();
   };
 
   const handleStopRecording = () => {
     setGrabando(false);
     mediaRecorderRef.current.stop();
+    if (recognitionRef.current) recognitionRef.current.stop();
   };
 
   const handleSubmit = async (e) => {
@@ -76,7 +107,7 @@ function ReflexionForm() {
 
       <main className="reflexion-main">
         <form className="reflexion-form" onSubmit={handleSubmit}>
-            <div className="audio-controls">
+          <div className="audio-controls">
             {!grabando ? (
               <button type="button" onClick={handleStartRecording}>
                 🎙️ Iniciar Grabación
@@ -87,11 +118,11 @@ function ReflexionForm() {
               </button>
             )}
           </div>
-          <label htmlFor="texto"></label>
+
           <textarea
             id="texto"
             name="texto"
-            rows="2"
+            rows="4"
             value={texto}
             onChange={(e) => setTexto(e.target.value)}
           />
@@ -100,12 +131,16 @@ function ReflexionForm() {
             <div className="audio-preview">
               <p>🎧 Audio grabado:</p>
               <audio controls src={audioURL}></audio>
-               <button type="button" onClick={() => {
-      setAudioBlob(null);
-      setAudioURL(null);
-    }}>
-      🔄 Regrabar
-    </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setAudioBlob(null);
+                  setAudioURL(null);
+                  setTexto("");
+                }}
+              >
+                🔄 Regrabar
+              </button>
             </div>
           )}
 

@@ -9,6 +9,7 @@ import ParticipanteForm from "./componentes/Administradores/PartipanteForm/Parti
 import ReflexionForm from "./componentes/Participantes/ReflexionForm/ReflexionForm";
 import HistorialReflexiones from "./componentes/Participantes/Proceso/HistorialReflexiones";
 import EditarReflexionForm from "./componentes/Participantes/ReflexionForm/EditarReflexionForm/EditarReflexionForm";
+import LineaBaseForm from "./componentes/Lineabase/LineabaseForm";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/linea-base" element={<LineaBaseForm/>}/>
            <Route path="/registro-reflexion" element={<ReflexionForm/>}/>
            <Route path="/historial-reflexiones" element={<HistorialReflexiones/>}/>
            <Route path="/editar-reflexiones/:id" element={<EditarReflexionForm/>}/>
